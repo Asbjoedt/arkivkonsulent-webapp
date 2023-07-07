@@ -2,22 +2,33 @@
 <html lang="en">
 
 <head>
+    <script>
+        Boolean testing = false;
+        function deployment {
+            if (testing)
+                document.getElementsByTagName('head')[0].appendChild('<base href=\"/\">');
+            else
+                document.getElementsByTagName('head')[0].appendChild('<base href=\"/wwwroot/\"/>');
+            }
+    </script>
     <meta charset="utf-8" />
-    <title>arkivkonsulent-webapp</title>
-    <base href="/" />
+    <title>Webapp - Arkivkonsulent</title>
     <link href="css/app.css" rel="stylesheet" />
     <link href="manifest.json" rel="manifest" />
-    
+    <link href="arkivkonsulent-logo.svg" rel="icon" type="image/x-icon" />
+
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="arkivkonsulent_webapp.styles.css" rel="stylesheet" /> -->
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div class="app" id="app">
+        <img src="loading-icon.gif" />
+    </div>
 
     <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
+        En fejl er sket.
+        <a href="" class="reload">Genindlæs</a>
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
