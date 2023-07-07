@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arkivkonsulent-webapp", "arkivkonsulent-webapp\arkivkonsulent-webapp.csproj", "{515DF33E-67A9-401E-83B3-4947DA2DAA1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{515DF33E-67A9-401E-83B3-4947DA2DAA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515DF33E-67A9-401E-83B3-4947DA2DAA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515DF33E-67A9-401E-83B3-4947DA2DAA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515DF33E-67A9-401E-83B3-4947DA2DAA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80BC53FE-7988-436A-AC3D-E394856295D8}
+	EndGlobalSection
+EndGlobal
