@@ -2,17 +2,36 @@
 @layout ArcHome
 @inject NavigationManager Link
 
-<div class="arc-content">
-    <div class="arc-content-subsection">Vælg applikation</div>
-    <a href=""><div class="arc-box-small">archiveIndex</div></a>
-    <a href=""><div class="arc-box-small">Regneark</div></a>
-    <a href=""><div class="arc-box-small">Survey data</div></a>
-    <p></p>
-    <div class="arc-content-subsection">Vedrørende din brug</div>
-    <a href=""><div class="arc-box-small">Servicevilkår</div></a>
-    <a href=""><div class="arc-box-small">Databeskyttelse</div></a>
-</div>
+<div class="arc-content-subsection">Vælg applikation</div>
+<button type="button" class="arc-box-small" @onclick="@LinkArchiveIndex">archiveIndex</button>
+<button type="button" class="arc-box-small" @onclick="@LinkRegneark">Regneark</button>
+<button type="button" class="arc-box-small" @onclick="@LinkSurveyData">Survey data</button>
+
+<p></p>
+
+<div class="arc-content-subsection">Vedrørende din brug</div>
+<button type="button" class="arc-box-small" @onclick="@LinkServicevilkaar">Servicevilkår</button>
+<button type="button" class="arc-box-small" @onclick="@LinkDatabeskyttelse">Databeskyttelse</button>
 
 @code {
-
+    public void LinkArchiveIndex()
+    {
+        Link.NavigateTo("ArchiveIndex/HomeArchiveIndex");
+    }
+        public void LinkRegneark()
+    {
+        Link.NavigateTo("Regneark/HomeRegneark");
+    }
+    public void LinkSurveyData()
+    {
+        Link.NavigateTo("SurveyData/HomeSurveyData");
+    }
+    public void LinkServicevilkaar()
+    {
+        Link.NavigateTo("Servicevilkaar");
+    }
+    public void LinkDatabeskyttelse()
+    {
+        Link.NavigateTo("Databeskyttelse");
+    }
 }

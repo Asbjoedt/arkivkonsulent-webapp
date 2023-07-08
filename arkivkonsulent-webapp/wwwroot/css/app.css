@@ -112,8 +112,6 @@ a {
     font-size: small;
     margin-top: 10px;
     width: 100%;
-    padding: 10px;
-    padding-right: 0px;
     display: inline-flex;
     justify-content: center;
 }
@@ -155,6 +153,12 @@ a {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.arc-topmenu {
+    display: inline;
+    position: sticky;
+}
+
 /* Form classes begin */
 .arc-form {
     background-color: #f8f9fa;
@@ -195,10 +199,18 @@ textarea {
 /* Form classes end */
 
 /* Blazor classes begin */
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-#app {
+main {
+    height: 100%;
+}
+
+.loading-image {
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-color: white;
 }
 
 h1:focus {
