@@ -80,9 +80,9 @@ a {
     list-style: none;
 }
 
-    .arc-sidebar-item a {
-        color: #ffbf00;
-    }
+.arc-sidebar-item a {
+    color: #ffbf00;
+}
 
 .arc-page {
     padding: 20px;
@@ -154,10 +154,72 @@ a {
     cursor: pointer;
 }
 
-.arc-topmenu {
-    display: inline;
+/* Top menu classes begin */
+.arc-topmenu-container {
+    width: 100%;
+    max-width: 60em;
+    padding: 0px 0px 0px 20px;
+    display: flex;
+    justify-content: center;
     position: sticky;
+    top: 0;
 }
+
+.arc-topmenu {
+    width: 80%;
+}
+
+.arc-topmenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+.arc-topmenu li {
+    float: left;
+}
+
+.arc-topmenu-dropdown li {
+    display: inline-block;
+}
+
+.arc-topmenu-button, .arc-topmenu-dropdown-button {
+    cursor: pointer;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    border: none;
+}
+
+.arc-topmenu-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f8f9fa;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.arc-topmenu-dropdown-content-button {
+    cursor: pointer;
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-align: left;
+    width: 100%;
+    border: none;
+}
+
+.arc-topmenu-button:hover, .arc-topmenu-dropdown:hover .arc-topmenu-dropdown-button, .arc-topmenu-dropdown-content-button:hover {
+    background-color: #ffbf00;
+}
+
+.arc-topmenu-dropdown:hover .arc-topmenu-dropdown-content {
+    display: block;
+}
+/* Top menu classes end */
 
 /* Form classes begin */
 .arc-form {
@@ -199,8 +261,6 @@ textarea {
 /* Form classes end */
 
 /* Blazor classes begin */
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
 main {
     height: 100%;
 }
@@ -246,3 +306,7 @@ h1:focus {
         content: "An error has occurred."
     }
 /* Blazor classes end */
+
+/* Import classes start */
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+/* Import classes end */

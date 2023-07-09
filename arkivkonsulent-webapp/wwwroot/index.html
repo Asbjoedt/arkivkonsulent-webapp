@@ -3,12 +3,12 @@
 
 <head>
     <script>
-        Boolean testing = false;
-        function deployment {
-            if (testing)
-                document.getElementsByTagName('head')[0].appendChild('<base href=\"/\">');
-            else
-                document.getElementsByTagName('head')[0].appendChild('<base href=\"/wwwroot/\"/>');
+                Boolean testing = false;
+            function deployment {
+                if (testing)
+                    document.getElementsByTagName('head')[0].appendChild('<base href=\"/\">');
+                else
+                    document.getElementsByTagName('head')[0].appendChild('<base href=\"/wwwroot/\"/>');
             }
     </script>
 
@@ -18,7 +18,8 @@
 
     <link href="css/app.css" rel="stylesheet" />
     <link href="manifest.json" rel="manifest" />
-    <link href="/graphics/arkivkonsulent-logo.svg" rel="icon" type="image/x-icon" />
+    <link href="graphics/arkivkonsulent-logo.svg" rel="icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="arkivkonsulent_webapp.styles.css" rel="stylesheet" /> -->
@@ -26,7 +27,7 @@
 
 <body>
     <div class="app" id="app">
-        <div class="loading-image"><img src="/graphics/loading-icon.gif" /></div>
+        <div class="loading-image"><img src="graphics/loading-icon.gif" /></div>
     </div>
 
     <div id="blazor-error-ui">
