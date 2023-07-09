@@ -3,9 +3,9 @@
 @inject NavigationManager Link
 
 <div class="arc-content-subsection">Vælg applikation</div>
-<button type="button" class="arc-box-small" @onclick="@LinkArchiveIndex">archiveIndex</button>
-<button type="button" class="arc-box-small" @onclick="@LinkRegneark">Regneark</button>
-<button type="button" class="arc-box-small" @onclick="@LinkSurveyData">Survey data</button>
+<button type="button" class="arc-box-small" @onclick="@LinkHomeMetadata">Metadata</button>
+<button type="button" class="arc-box-small" @onclick="@LinkHomeRegneark">Regneark</button>
+<button type="button" class="arc-box-small" @onclick="@LinkHomeSurveyData">Survey data</button>
 
 <p></p>
 
@@ -14,15 +14,15 @@
 <button type="button" class="arc-box-small" @onclick="@LinkDatabeskyttelse">Databeskyttelse</button>
 
 @code {
-    public void LinkArchiveIndex()
+    public void LinkHomeMetadata()
     {
-        Link.NavigateTo("ArchiveIndex/HomeArchiveIndex");
+        Link.NavigateTo("Metadata/HomeMetadata");
     }
-        public void LinkRegneark()
+        public void LinkHomeRegneark()
     {
         Link.NavigateTo("Regneark/HomeRegneark");
     }
-    public void LinkSurveyData()
+    public void LinkHomeSurveyData()
     {
         Link.NavigateTo("SurveyData/HomeSurveyData");
     }

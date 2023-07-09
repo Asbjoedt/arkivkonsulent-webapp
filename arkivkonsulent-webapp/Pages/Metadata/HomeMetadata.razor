@@ -1,0 +1,30 @@
+﻿@page "/Metadata/HomeMetadata"
+@layout ArcPageNoSidebar
+@inject NavigationManager Link
+
+<h2>Metadata</h2>
+
+<div class="arc-content-subsection">Vælg funktion</div>
+<button type="button" class="arc-box-small" @onclick="@LinkVisArchiveIndex">Vis archiveIndex</button>
+<button type="button" class="arc-box-small" @onclick="@LinkOpretArchiveIndex">Opret archiveIndex</button>
+<button type="button" class="arc-box-small" @onclick="@LinkRedigerArchiveIndex">Rediger archiveIndex</button>
+
+<p></p>
+
+<div class="arc-content-subsection">Information</div>
+<p></p>
+
+@code {
+    public void LinkVisArchiveIndex()
+    {
+        Link.NavigateTo("/wwwroot/Metadata/VisArchiveIndex");
+    }
+    public void LinkOpretArchiveIndex()
+    {
+        Link.NavigateTo("/wwwroot/Metadata/OpretArchiveIndex");
+    }
+    public void LinkRedigerArchiveIndex()
+    {
+        Link.NavigateTo("/wwwroot/Metadata/RedigerArchiveIndex");
+    }
+}

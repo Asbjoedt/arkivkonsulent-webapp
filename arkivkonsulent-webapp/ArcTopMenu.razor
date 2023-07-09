@@ -5,9 +5,11 @@
     <div class="arc-topmenu">
         <ul>
             <li class="arc-topmenu-dropdown">
-            <li><button class="arc-topmenu-button" @onclick="@LinkMetadata">Metadata</button></li>
+                <button class="arc-topmenu-button" @onclick="@LinkHomeMetadata">Metadata</button>
                 <div class="arc-topmenu-dropdown-content">
                     <button class="arc-topmenu-dropdown-content-button" @onclick="@LinkVisArchiveIndex">Vis archiveIndex</button>
+                    <button class="arc-topmenu-dropdown-content-button" @onclick="@LinkOpretArchiveIndex">Opret archiveIndex</button>
+                    <button class="arc-topmenu-dropdown-content-button" @onclick="@LinkRedigerArchiveIndex">Rediger archiveIndex</button>
                 </div>
             </li>
             <li class="arc-topmenu-dropdown">
@@ -17,7 +19,7 @@
                     <button class="arc-topmenu-dropdown-content-button" @onclick="@LinkValiderRegneark">Valider regneark</button>
                 </div>
             </li>
-            <li><button class="arc-topmenu-button" @onclick="@LinkSurveyData">Survey data</button></li>
+            <li><button class="arc-topmenu-button" @onclick="@LinkHomeSurveyData">Survey data</button></li>
             <li><button class="arc-topmenu-button" @onclick="@LinkServicevilkaar">Servicevilkår</button></li>
             <li><button class="arc-topmenu-button" @onclick="@LinkDatabeskyttelse">Databeskyttelse</button></li>
         </ul>
@@ -25,13 +27,21 @@
 </div>
 
 @code {
-    public void LinkMetadata()
+    public void LinkHomeMetadata()
     {
-        Link.NavigateTo("/wwwroot/Metadata");
+        Link.NavigateTo("/wwwroot/Metadata/HomeMetadata");
     }
     public void LinkVisArchiveIndex()
     {
         Link.NavigateTo("/wwwroot/Metadata/VisArchiveIndex");
+    }
+    public void LinkOpretArchiveIndex()
+    {
+        Link.NavigateTo("/wwwroot/Metadata/OpretArchiveIndex");
+    }
+    public void LinkRedigerArchiveIndex()
+    {
+        Link.NavigateTo("/wwwroot/Metadata/RedigerArchiveIndex");
     }
     public void LinkHomeRegneark()
     {
@@ -45,9 +55,9 @@
     {
         Link.NavigateTo("/wwwroot/Regneark/ValiderRegneark");
     }
-    public void LinkSurveyData()
+    public void LinkHomeSurveyData()
     {
-        Link.NavigateTo("/wwwroot/SurveyData");
+        Link.NavigateTo("/wwwroot/HomeSurveyData");
     }
     public void LinkServicevilkaar()
     {
