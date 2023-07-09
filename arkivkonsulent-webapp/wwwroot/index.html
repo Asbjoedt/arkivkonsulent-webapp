@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <script>
         Boolean testing = false;
@@ -20,10 +19,14 @@
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="arkivkonsulent_webapp.styles.css" rel="stylesheet" /> -->
 </head>
-
 <body>
     <div class="app" id="app">
-        <div class="loading-image"><img src="graphics/loading-icon.gif" /></div>
+        <div class="arc-loading">
+            <div class="arc-loading-animation-container">
+                <div class="arc-loading-animation"></div>
+            </div>
+            <div class="arc-loading-text">Vent venligst...</div>
+        </div>
     </div>
 
     <div id="blazor-error-ui">
@@ -33,5 +36,4 @@
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
-
 </html>
