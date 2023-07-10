@@ -1,11 +1,95 @@
 ﻿@page "/Regneark/KonverterRegneark"
 @layout ArcPageNoSidebar
 @inject NavigationManager Link
+@using Archsheerary
+@using Microsoft.Extensions.Logging
+@inject ILogger<KonverterRegneark> Logger
 
 <h2>Konverter regneark</h2>
+<p>Du kan her konvertere regneark til formater, der lever op til arkivkrav.</p>
+<p>Du kan læse om standarden for arkivering, som benyttes <a href="https://github.com/openpreserve/sheets-preservation-spec/tree/v1.0.0-draft" target="_blank">her</a>.</p>
 
+<div class="arc-content-subsection">Forudsætninger</div>
+<table class="arc-table">
+    <tr class="arc-table-row">
+        <th class="arc-table-header">Vigtigt! Læs før start</th>
+    </tr>
+    <tr>
+        <td class="arc-table-cell">1. Brug altid en kopi af dine regneark til konvertering</td>
+    </tr>
+    <tr>
+        <td class="arc-table-cell">2. <a href="https://da.libreoffice.org/" target="_blank">LibreOffice</a> skal være installeret på din lokale maskine</td>
+    </tr>
+</table>
 
+<div class="arc-content-subsection">Konverter regneark til Office Open XML (.xlsx) inkl. arkivkrav</div>
+<div class="arc-form">
+    <div class="arc-form-metadata">
+        <div class="arc-form-metadata-cheat"><p>Begrænsninger</p></div>
+        <ul class="arc-form-metadata-list">
+            <li class="arc-list-roman">Maks. 5 filer er tilladt</li>
+            <li class="arc-list-roman">Maks. 100 MB per fil er tilladt</li>
+            <li class="arc-list-roman">Kun følgende filendelser er tilladt: .fods, .ods, .ots, .xls, xlsm, .xlsx, .xlm, .xltm, .xltx</li>
+        </ul>
+    </div>
+    <InputFile OnChange="@LoadFiles" multiple />
+    @if (isLoading)
+    {
+        <div class="arc-loading-animation-small"></div>
+    }
+    else
+    {
+        @foreach (var file in loadedFiles)
+        {
+            <div class="arc-form-metadata">
+                <p>Fil metadata</p>
+                <ul class="arc-form-metadata-list">
+                    <li class="arc-list-roman"><strong>Filnavn:</strong> @file.Name</li>
+                    <li class="arc-list-roman"><strong>Sidst ændret:</strong> @file.LastModified.ToString()</li>
+                    <li class="arc-list-roman"><strong>Størrelse (bytes):</strong> @file.Size</li>
+                    <li class="arc-list-roman"><strong>Filtype:</strong> @file.ContentType</li>
+                </ul>
+            </div>
+        }
+        @if (loadedFiles.FirstOrDefault() != null)
+        {
+            <button class="arc-button-small" @onclick="@(()=>ConvertSpreadsheet("A FILEPATH"))">Konverter</button>
+        }
+    }
+</div>
+
+<div class="arc-content-subsection">Konverter regneark til OpenDocument Format (.ods)</div>
+<p></p>
 
 @code {
+    private List<IBrowserFile> loadedFiles = new();
+    private long maxFileSize = 100000000;
+    private int maxAllowedFiles = 5;
+    private bool isLoading;
 
+    private void LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+                loadedFiles.Add(file);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("File: {Filename} Error: {Error}",
+                    file.Name, ex.Message);
+            }
+        }
+
+        isLoading = false;
+    }
+
+    void ConvertSpreadsheet(string filepath)
+    {
+        
+    }
 }
