@@ -1,4 +1,4 @@
-﻿@page "/Metadata/HomeMetadata"
+﻿@page "/HomeMetadata"
 @layout ArcPageNoSidebar
 @inject NavigationManager Link
 
@@ -17,14 +17,14 @@
 @code {
     public void LinkVisArchiveIndex()
     {
-        Link.NavigateTo("/wwwroot/Metadata/VisArchiveIndex");
+        Link.NavigateTo("/wwwroot/VisArchiveIndex");
     }
     public void LinkOpretArchiveIndex()
     {
-        Link.NavigateTo("/wwwroot/Metadata/OpretArchiveIndex");
+        Link.NavigateTo("/wwwroot/OpretArchiveIndex");
     }
     public void LinkRedigerArchiveIndex()
     {
-        Link.NavigateTo("/wwwroot/Metadata/RedigerArchiveIndex");
+        Link.NavigateTo("/wwwroot/RedigerArchiveIndex");
     }
 }

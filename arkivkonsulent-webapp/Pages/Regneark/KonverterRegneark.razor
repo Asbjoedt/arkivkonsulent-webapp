@@ -1,4 +1,4 @@
-﻿@page "/Regneark/KonverterRegneark"
+﻿@page "/KonverterRegneark"
 @layout ArcPageNoSidebar
 @inject NavigationManager Link
 @using Archsheerary
@@ -25,58 +25,92 @@
 <div class="arc-content-subsection">Konverter regneark til Office Open XML (.xlsx) inkl. arkivkrav</div>
 <div class="arc-form">
     <div class="arc-form-metadata">
-        <div class="arc-form-metadata-cheat"><p>Begrænsninger</p></div>
+        <div class="arc-form-metadata-headline-cheat">Begrænsninger</div>
         <ul class="arc-form-metadata-list">
-            <li class="arc-list-roman">Maks. 5 filer er tilladt</li>
-            <li class="arc-list-roman">Maks. 100 MB per fil er tilladt</li>
-            <li class="arc-list-roman">Kun følgende filendelser er tilladt: .fods, .ods, .ots, .xls, xlsm, .xlsx, .xlm, .xltm, .xltx</li>
+            <li class="arc-list-roman"><strong>Tilladt antal filer:</strong> 5</li>
+            <li class="arc-list-roman"><strong>Tilladt filstørrelse:</strong> 100 MB per fil</li>
+            <li class="arc-list-roman"><strong>Tilladte filendelser:</strong> .fods, .numbers, .ods, .ots, .xls, .xlsm, .xlsx, .xlm, .xltm, .xltx</li>
         </ul>
     </div>
-    <InputFile OnChange="@LoadFiles" multiple />
+
+    <InputFile OnChange="@LoadFilesForXLSX" multiple />
+    
     @if (isLoading)
     {
         <div class="arc-loading-animation-small"></div>
     }
     else
     {
-        @foreach (var file in loadedFiles)
+        @if (loadedFiles.FirstOrDefault() != null)
         {
             <div class="arc-form-metadata">
-                <p>Fil metadata</p>
-                <ul class="arc-form-metadata-list">
-                    <li class="arc-list-roman"><strong>Filnavn:</strong> @file.Name</li>
-                    <li class="arc-list-roman"><strong>Sidst ændret:</strong> @file.LastModified.ToString()</li>
-                    <li class="arc-list-roman"><strong>Størrelse (bytes):</strong> @file.Size</li>
-                    <li class="arc-list-roman"><strong>Filtype:</strong> @file.ContentType</li>
-                </ul>
+                <div class="arc-form-metadata-headline">Filer klar til konvertering</div>
+                @foreach (var file in loadedFiles)
+                {
+                    <p>Fil metadata</p>
+                    <ul class="arc-form-metadata-list">
+                        <li class="arc-list-roman"><strong>Filnavn:</strong> @file.Name</li>
+                        <li class="arc-list-roman"><strong>Sidst ændret:</strong> @file.LastModified.ToString()</li>
+                        <li class="arc-list-roman"><strong>Størrelse (bytes):</strong> @file.Size</li>
+                        <li class="arc-list-roman"><strong>Filtype:</strong> @file.ContentType</li>
+                    </ul>
+                }
+            </div>
+        }
+        @if (notLoadedFiles.FirstOrDefault() != null)
+        {
+            <div class="arc-form-metadata">
+                <div class="arc-form-metadata-headline">Filer kan ikke konverteres</div>
+                @foreach (var file in notLoadedFiles)
+                {
+                    <p>Fil metadata</p>
+                    <ul class="arc-form-metadata-list arc-form-metadata-list-fail">
+                        <li class="arc-list-roman"><strong>Filnavn:</strong> @file.Name</li>
+                        <li class="arc-list-roman"><strong>Sidst ændret:</strong> @file.LastModified.ToString()</li>
+                        <li class="arc-list-roman"><strong>Størrelse (bytes):</strong> @file.Size</li>
+                        <li class="arc-list-roman"><strong>Filtype:</strong> @file.ContentType</li>
+                    </ul>
+                }
             </div>
         }
         @if (loadedFiles.FirstOrDefault() != null)
         {
+            <div class="arc-form-metadata-headline">@loadedFiles.Count fil(er) er klar til konvertering</div>
             <button class="arc-button-small" @onclick="@(()=>ConvertSpreadsheet("A FILEPATH"))">Konverter</button>
         }
     }
 </div>
 
 <div class="arc-content-subsection">Konverter regneark til OpenDocument Format (.ods)</div>
-<p></p>
 
 @code {
     private List<IBrowserFile> loadedFiles = new();
+    private List<IBrowserFile> notLoadedFiles = new();
     private long maxFileSize = 100000000;
     private int maxAllowedFiles = 5;
     private bool isLoading;
+    private string[] fileFormats = { ".fods", ".numbers", ".ods", ".ots", ".xls", ".xlsm", ".xlsx", ".xlm", ".xltm", ".xltx" };
 
-    private void LoadFiles(InputFileChangeEventArgs e)
+    private void LoadFilesForXLSX(InputFileChangeEventArgs e)
     {
         isLoading = true;
         loadedFiles.Clear();
+        notLoadedFiles.Clear();
 
+        // Indlæs filer
         foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
         {
             try
             {
-                loadedFiles.Add(file);
+                string extension = Path.GetExtension(file.Name);
+                if (fileFormats.Contains(extension))
+                {
+                    loadedFiles.Add(file);
+                }
+                else
+                {
+                    notLoadedFiles.Add(file);
+                }
             }
             catch (Exception ex)
             {
@@ -84,12 +118,12 @@
                     file.Name, ex.Message);
             }
         }
-
         isLoading = false;
     }
 
     void ConvertSpreadsheet(string filepath)
     {
-        
+        //Fjern alle filer der ikke kan konverteres fra hukommelsen
+        notLoadedFiles.Clear();
     }
 }

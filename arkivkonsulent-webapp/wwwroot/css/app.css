@@ -283,20 +283,32 @@ th {
     border-radius: 5px;
 }
 
-.arc-form-metadata-list {
-    padding-left: 20px;
-    font-size: small;
-}
-
 .arc-form-metadata p {
     font-weight: bold;
     font-size: small;
 }
 
-.arc-form-metadata-cheat p {
+.arc-form-metadata-headline-cheat {
     font-weight: bold;
-    font-size: small;
+    font-size: inherit;
     margin: 0px;
+}
+
+.arc-form-metadata-headline {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #a2a9b1;
+}
+
+.arc-form-metadata-list {
+    padding-left: 20px;
+    font-size: small;
+}
+
+.arc-form-metadata-list-fail {
+    color: red;
 }
 
 input[type=text], input[type=email], select, textarea {
