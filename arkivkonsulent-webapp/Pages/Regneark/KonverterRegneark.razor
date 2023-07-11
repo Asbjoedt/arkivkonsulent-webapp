@@ -1,4 +1,4 @@
-﻿@page "/KonverterRegneark"
+﻿@page "/konverter-regneark"
 @layout ArcPageNoSidebar
 @inject NavigationManager Link
 @using Archsheerary
@@ -22,13 +22,13 @@
     </tr>
 </table>
 
-<div class="arc-content-subsection">Konverter regneark til Office Open XML (.xlsx) inkl. arkivkrav</div>
+<div class="arc-content-subsection">Konverter regneark</div>
 <div class="arc-form">
     <div class="arc-form-metadata">
         <div class="arc-form-metadata-headline-cheat">Begrænsninger</div>
         <ul class="arc-form-metadata-list">
             <li class="arc-list-roman"><strong>Tilladt antal filer:</strong> 5</li>
-            <li class="arc-list-roman"><strong>Tilladt filstørrelse:</strong> 100 MB per fil</li>
+            <li class="arc-list-roman"><strong>Tilladt filstørrelse:</strong> 50 MB per fil</li>
             <li class="arc-list-roman"><strong>Tilladte filendelser:</strong> .fods, .numbers, .ods, .ots, .xls, .xlsm, .xlsx, .xlm, .xltm, .xltx</li>
         </ul>
     </div>
@@ -76,17 +76,15 @@
         @if (loadedFiles.FirstOrDefault() != null)
         {
             <div class="arc-form-metadata-headline">@loadedFiles.Count fil(er) er klar til konvertering</div>
-            <button class="arc-button-small" @onclick="@(()=>ConvertSpreadsheet("A FILEPATH"))">Konverter</button>
+            <button class="arc-button-small" @onclick="@(()=>ConvertSpreadsheet())">Konverter</button>
         }
     }
 </div>
 
-<div class="arc-content-subsection">Konverter regneark til OpenDocument Format (.ods)</div>
-
 @code {
     private List<IBrowserFile> loadedFiles = new();
     private List<IBrowserFile> notLoadedFiles = new();
-    private long maxFileSize = 100000000;
+    private long maxFileSize = 50000000;
     private int maxAllowedFiles = 5;
     private bool isLoading;
     private string[] fileFormats = { ".fods", ".numbers", ".ods", ".ots", ".xls", ".xlsm", ".xlsx", ".xlm", ".xltm", ".xltx" };
@@ -121,7 +119,7 @@
         isLoading = false;
     }
 
-    void ConvertSpreadsheet(string filepath)
+    void ConvertSpreadsheet()
     {
         //Fjern alle filer der ikke kan konverteres fra hukommelsen
         notLoadedFiles.Clear();
